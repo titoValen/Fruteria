@@ -5,7 +5,15 @@
  */
 
 const $ = document;
+const contenedorProductos = $.querySelector('#productos');
+const ContenidoItemsAgregados = $.querySelector('#ItemsAgregados');
+const ContenidoValorTotal = $.querySelector('#ValorTotal');
 
+ContenidoItemsAgregados.textContent = '0';
+ContenidoValorTotal.textContent = '0';
+
+let ValorTotal = 0;
+let ItemsAgregados = [];
 let Productos = [
 	{
 		nombre: 'Banana',
@@ -45,10 +53,9 @@ let Productos = [
 	},
 ];
 
-const contenedorProductos = $.querySelector('#productos');
-
 Productos.forEach((producto => {
 	const productoDiv = $.createElement('div');
+	productoDiv.id = producto.nombre.toLowerCase().replace(' ', '-');
 
 	const img = $.createElement('img');
 	img.src = `img/fruta/${producto.imagen}`;
@@ -66,13 +73,31 @@ Productos.forEach((producto => {
 	infoDiv.appendChild(precioP);
 
 	const agregarBtn = $.createElement('button');
+	agregarBtn.classList.add('agregar');
 	agregarBtn.textContent = 'Agregar';
 	infoDiv.appendChild(agregarBtn);
 
 	const ampliarBtn = $.createElement('button');
+	ampliarBtn.classList.add('ampliar');
 	ampliarBtn.textContent = 'Ampliar';
 	infoDiv.appendChild(ampliarBtn);
 
 	productoDiv.appendChild(infoDiv);
 	contenedorProductos.appendChild(productoDiv);
 }))
+
+const botonesAgregar = $.querySelectorAll('.agregar');
+
+botonesAgregar.forEach((boton) => {
+	boton.addEventListener('click', (e) => {
+		const productoDiv = e.target.parentElement.parentElement;
+		const nombreProducto = productoDiv.querySelector('h3').textContent;
+		const producto = Productos.find((p) => p.nombre === nombreProducto);
+
+		ItemsAgregados.push(producto);
+		ValorTotal += producto.precio;
+
+		ContenidoItemsAgregados.textContent = ItemsAgregados.length;
+		ContenidoValorTotal.textContent = ValorTotal;
+	});
+});
