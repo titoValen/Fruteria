@@ -1,44 +1,38 @@
 'use strict';
 
 /*
- *	APELLIDO, NOMBRE
+ *	Tito, Valentín
  */
 
-let aProductos = [
-	{
-		nombre: 'Nombre del producto 1',
-		imagen: 'producto-de-ejemplo.jpg',
-		descripcion: 'Descripción del producto 1',
-		precio: 100,
-	},
-	{
-		nombre: 'Nombre del producto 2',
-		imagen: 'producto-de-ejemplo.jpg',
-		descripcion: 'Descripción del producto 2',
-		precio: 200,
-	},
-	{
-		nombre: 'Nombre del producto 3',
-		imagen: 'producto-de-ejemplo.jpg',
-		descripcion: 'Descripción del producto 3',
-		precio: 300,
-	},
-	{
-		nombre: 'Nombre del producto 4',
-		imagen: 'producto-de-ejemplo.jpg',
-		descripcion: 'Descripción del producto 4',
-		precio: 400,
-	},
-	{
-		nombre: 'Nombre del producto 5',
-		imagen: 'producto-de-ejemplo.jpg',
-		descripcion: 'Descripción del producto 5',
-		precio: 500,
-	},
-	{
-		nombre: 'Nombre del producto 6',
-		imagen: 'producto-de-ejemplo.jpg',
-		descripcion: 'Descripción del producto 6',
-		precio: 600,
-	},
+let Productos = [
+    {
+        nombre: 'Banana',
+        imagen: 'banana.jpg',
+        descripcion: 'Plátano fresco y delicioso',
+        precio: 100,
+    },
+    {
+        nombre: 'Frutilla',
+        imagen: 'frutilla.jpg',
+        descripcion: 'Frutillas rojas y jugosas',
+        precio: 150,
+    },
+    {
+        nombre: 'Manzana Roja',
+        imagen: 'manzana-roja.jpg',
+        descripcion: 'Manzana roja crujiente',
+        precio: 120,
+    },
+    {
+        nombre: 'Naranja',
+        imagen: 'naranja.jpg',
+        descripcion: 'Naranja fresca y jugosa',
+        precio: 110,
+    },
+    {
+        nombre: 'Piña',
+        imagen: 'pina.jpg',
+        descripcion: 'Piña tropical dulce',
+        precio: 180,
+    },
 ];
