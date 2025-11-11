@@ -101,3 +101,16 @@ botonesAgregar.forEach((boton) => {
 		ContenidoValorTotal.textContent = ValorTotal;
 	});
 });
+
+const modal = Modal(document.getElementById("root"), {
+	width: 400,
+	height: 200,
+	title: "My window modal",
+	closed: true,
+	closable: true,
+	draggable: true,
+	position: 'center',
+});
+button.addEventListener('click', () => {
+	modal.closed = !modal.closed;
+});

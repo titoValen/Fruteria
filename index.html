@@ -6,6 +6,10 @@
 	<title>Programación I | Parcial 2 | APELLIDO, NOMBRE</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
 	<link rel="shortcut icon" href="img/favicon.ico" />
+	<!-- CSS Lemonadejs -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@lemonadejs/modal/dist/style.min.css" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons" />
+	
 	<link rel="stylesheet" href="css/reset.css" />
 </head>
 
@@ -18,7 +22,14 @@
 		<div id="minicarrito">
 			<p><span id="ItemsAgregados"></span> ítems agregados</p>
 			<p>$<span id="ValorTotal"></span> es el total</p>
-			<button>Ver carrito</button>
+			<button type="button" id="button">Ver carrito</button>
+
+			<div id="root">
+				<div style="padding: 10px;">
+					<p>Quick example!</p>
+					<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...</div>
+				</div>
+			</div>
 		</div>
 		<h2>Productos</h2>
 		<!-- Generar el contenido del div#productos dinámicamente -->
@@ -35,6 +46,11 @@
 			<li>Programación 1</li>
 		</ul>
 	</footer>
+
+	<!-- JS Lemonadejs -->
+	<script src="https://cdn.jsdelivr.net/npm/lemonadejs/dist/lemonade.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@lemonadejs/modal/dist/index.min.js"></script>
+	
 	<script src="js/parcial.js"></script>
 </body>
 
