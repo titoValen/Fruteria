@@ -313,40 +313,6 @@ input[type=submit]:hover {
 	text-align: center;
 }
 
-.modal {
-	position: fixed;
-	z-index: 1;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	background-color: rgba(0,0,0,.9);
-}
-
-.modal a {
-	position: fixed;
-	z-index: 1;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	top: 1em;
-	right: 1em;
-	border-radius: 2.5em;
-	width: 5em;
-	height: 5em;
-	background-color: rgba(255,255,255,.9);
-	font-size: 1em;
-	font-weight: 400;
-	text-align: center;
-	color: #1A4A5E;
-	text-decoration: none;
-}
-
 /**
  *	Web
  */
