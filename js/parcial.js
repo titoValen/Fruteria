@@ -102,15 +102,46 @@ botonesAgregar.forEach((boton) => {
 	});
 });
 
-const modal = Modal(document.getElementById("root"), {
-	width: 400,
-	height: 200,
-	title: "My window modal",
+// Crear el contenedor del modal con su contenido inicial
+const modalContainer = $.getElementById('modal-producto');
+modalContainer.innerHTML = `
+	<div id="modal-contenido" style="padding: 20px; text-align: center;">
+		<p>Cargando...</p>
+	</div>
+`;
+
+// Crear el modal con LemonadeJS
+const modal = Modal(modalContainer, {
+	width: 500,
+	title: 'Detalle del Producto',
+	top: 30,
 	closed: true,
 	closable: true,
 	draggable: true,
-	position: 'center',
+	backdrop: true
 });
-button.addEventListener('click', () => {
-	modal.closed = !modal.closed;
+
+// Agregar funcionalidad a los botones de ampliar
+const botonesAmpliar = $.querySelectorAll('.ampliar');
+
+botonesAmpliar.forEach((boton) => {
+	boton.addEventListener('click', (e) => {
+		const productoDiv = e.target.parentElement.parentElement;
+		const nombreProducto = productoDiv.querySelector('h3').textContent;
+		const producto = Productos.find((p) => p.nombre === nombreProducto);
+
+		// Actualizar el contenido del modal (solo el contenido interno)
+		const modalContenido = $.getElementById('modal-contenido');
+		modalContenido.innerHTML = `
+			<img src="img/fruta/${producto.imagen}" alt="${producto.nombre}">
+			<h3>${producto.nombre}</h3>
+			<div class='modal-descripcion'>
+				<p class='modal-text'>${producto.descripcion}</p>
+				<p class='modal-precio'>Precio: $${producto.precio}</p>
+			</div>
+			`;
+
+		// Abrir el modal
+		modal.closed = false;
+	});
 });
