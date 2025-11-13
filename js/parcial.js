@@ -107,20 +107,20 @@ botonesAgregar.forEach((boton) => {
 // ----------------------------------------
 
 // Crear el contenedor del modal con su contenido inicial
-const modalContainer = $.getElementById('modal-producto');
+const modalContainerProducto = $.getElementById('modal-producto');
 // Crear el contenido del modal
-const modalContenido = $.createElement('div');
-modalContenido.id = 'modal-contenido';
+const modalContenidoProducto = $.createElement('div');
+modalContenidoProducto.id = 'modal-contenido';
 
 // Crear y agregar el contenido de carga inicial
 let modalContenidoCargando = $.createElement('p');
 modalContenidoCargando.textContent = 'Cargando...';
 
-modalContenido.appendChild(modalContenidoCargando);
-modalContainer.appendChild(modalContenido);
+modalContenidoProducto.appendChild(modalContenidoCargando);
+modalContainerProducto.appendChild(modalContenidoProducto);
 
 // Crear el modal con LemonadeJS
-const modal = Modal(modalContainer, {
+let modal = Modal(modalContainerProducto, {
 	width: 500,
 	title: 'Detalle del Producto',
 	top: 30,
@@ -140,18 +140,18 @@ botonesAmpliar.forEach((boton) => {
 		const producto = Productos.find((p) => p.nombre === nombreProducto);
 
 		// Limpiar el contenido anterior del modal
-		modalContenido.innerHTML = '';
+		modalContenidoProducto.innerHTML = '';
 
 		// Crear y agregar la imagen del producto
 		const img = $.createElement('img');
 		img.src = `img/fruta/${producto.imagen}`;
 		img.alt = producto.nombre;
-		modalContenido.appendChild(img);
+		modalContenidoProducto.appendChild(img);
 
 		// Crear y agregar el título del producto
 		const titulo = $.createElement('h3');
 		titulo.textContent = producto.nombre;
-		modalContenido.appendChild(titulo);
+		modalContenidoProducto.appendChild(titulo);
 
 		// Crear y agregar la descripción del producto
 		const descripcionDiv = $.createElement('div');
@@ -168,7 +168,7 @@ botonesAmpliar.forEach((boton) => {
 		precioText.textContent = `Precio: $${producto.precio}`;
 		descripcionDiv.appendChild(precioText);
 
-		modalContenido.appendChild(descripcionDiv);
+		modalContenidoProducto.appendChild(descripcionDiv);
 
 		// Abrir el modal
 		modal.closed = false;
