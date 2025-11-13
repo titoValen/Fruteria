@@ -2,6 +2,11 @@
     font-size: 2.3rem;
 }
 
+#modal-contenido {
+    padding: 20px;
+    text-align: center;
+}
+
 #modal-contenido img {
     max-width: 60%;
     height: auto;

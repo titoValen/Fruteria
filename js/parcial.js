@@ -104,11 +104,16 @@ botonesAgregar.forEach((boton) => {
 
 // Crear el contenedor del modal con su contenido inicial
 const modalContainer = $.getElementById('modal-producto');
-modalContainer.innerHTML = `
-	<div id="modal-contenido" style="padding: 20px; text-align: center;">
-		<p>Cargando...</p>
-	</div>
-`;
+// Crear el contenido del modal
+const modalContenido = $.createElement('div');
+modalContenido.id = 'modal-contenido';
+
+// Crear y agregar el contenido de carga inicial
+let modalContenidoCargando = $.createElement('p');
+modalContenidoCargando.textContent = 'Cargando...';
+
+modalContenido.appendChild(modalContenidoCargando);
+modalContainer.appendChild(modalContenido);
 
 // Crear el modal con LemonadeJS
 const modal = Modal(modalContainer, {
@@ -117,7 +122,7 @@ const modal = Modal(modalContainer, {
 	top: 30,
 	closed: true,
 	closable: true,
-	draggable: true,
+	draggable: false,
 	backdrop: true
 });
 
@@ -130,16 +135,36 @@ botonesAmpliar.forEach((boton) => {
 		const nombreProducto = productoDiv.querySelector('h3').textContent;
 		const producto = Productos.find((p) => p.nombre === nombreProducto);
 
-		// Actualizar el contenido del modal (solo el contenido interno)
-		const modalContenido = $.getElementById('modal-contenido');
-		modalContenido.innerHTML = `
-			<img src="img/fruta/${producto.imagen}" alt="${producto.nombre}">
-			<h3>${producto.nombre}</h3>
-			<div class='modal-descripcion'>
-				<p class='modal-text'>${producto.descripcion}</p>
-				<p class='modal-precio'>Precio: $${producto.precio}</p>
-			</div>
-			`;
+		// Limpiar el contenido anterior del modal
+		modalContenido.innerHTML = '';
+
+		// Crear y agregar la imagen del producto
+		const img = $.createElement('img');
+		img.src = `img/fruta/${producto.imagen}`;
+		img.alt = producto.nombre;
+		modalContenido.appendChild(img);
+
+		// Crear y agregar el título del producto
+		const titulo = $.createElement('h3');
+		titulo.textContent = producto.nombre;
+		modalContenido.appendChild(titulo);
+
+		// Crear y agregar la descripción del producto
+		const descripcionDiv = $.createElement('div');
+		descripcionDiv.classList.add('modal-descripcion');
+
+		const descripcionText = $.createElement('p');
+		descripcionText.classList.add('modal-text');
+		descripcionText.textContent = producto.descripcion;
+		descripcionDiv.appendChild(descripcionText);
+
+		// Crear y agregar el precio del producto
+		const precioText = $.createElement('p');
+		precioText.classList.add('modal-precio');
+		precioText.textContent = `Precio: $${producto.precio}`;
+		descripcionDiv.appendChild(precioText);
+
+		modalContenido.appendChild(descripcionDiv);
 
 		// Abrir el modal
 		modal.closed = false;
