@@ -31,3 +31,7 @@
     font-weight: bold;
     color: #2ecc71;
 }
+
+.lm-modal[minimized=true] {
+    width: fit-content !important;
+}

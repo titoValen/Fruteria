@@ -101,6 +101,9 @@ botonesAgregar.forEach((boton) => {
 
 		ContenidoItemsAgregados.textContent = ItemsAgregados.length;
 		ContenidoValorTotal.textContent = ValorTotal;
+
+		// Actualizar el título del modal del carrito dinámicamente
+		modalCarrito.title = `Total a pagar: $${ValorTotal}`;
 	});
 });
 
@@ -120,7 +123,7 @@ modalContenidoProducto.appendChild(modalContenidoCargando);
 modalContainerProducto.appendChild(modalContenidoProducto);
 
 // Crear el modal con LemonadeJS
-let modal = Modal(modalContainerProducto, {
+let modalProducto = Modal(modalContainerProducto, {
 	width: 500,
 	title: 'Detalle del Producto',
 	top: 30,
@@ -171,8 +174,80 @@ botonesAmpliar.forEach((boton) => {
 		modalContenidoProducto.appendChild(descripcionDiv);
 
 		// Abrir el modal
-		modal.closed = false;
+		modalProducto.closed = false;
 	});
 });
 
 // ----------------------------------------
+
+// Crear el contenedor del modal con su contenido inicial
+const modalContainercarrito = $.getElementById('modal-carrito');
+// Crear el contenido del modal
+const modalContenidoCarrito = $.createElement('div');
+modalContenidoCarrito.id = 'modal-contenido';
+
+// Crear y agregar el contenido de carga inicial
+let modalContenidoCargandoCarrito = $.createElement('p');
+modalContenidoCargandoCarrito.textContent = 'Cargando...';
+
+modalContenidoCarrito.appendChild(modalContenidoCargandoCarrito);
+modalContainercarrito.appendChild(modalContenidoCarrito);
+
+// Crear el modal con LemonadeJS
+let modalCarrito = Modal(modalContainercarrito, {
+	width: 500,
+	title: "Carrito de Compras",
+	top: 30,
+	closed: true,
+	closable: true,
+	draggable: true,
+	minimizable: true
+});
+
+// Agregar funcionalidad al botón de ver carrito
+const botonVerCarrito = $.getElementById('button');
+
+botonVerCarrito.addEventListener('click', () => {
+	// Limpiar el contenido anterior del modal
+	modalContenidoCarrito.innerHTML = '';
+
+	// Actualizar el título del modal del carrito dinámicamente
+	modalCarrito.title = `Total a pagar: $${ValorTotal}`;
+
+	if (ItemsAgregados.length === 0) {
+		const mensajeVacio = $.createElement('p');
+		mensajeVacio.textContent = 'El carrito está vacío.';
+		modalContenidoCarrito.appendChild(mensajeVacio);
+	} else {
+		ItemsAgregados.forEach((producto) => {
+			const productoDiv = $.createElement('div');
+			productoDiv.classList.add('modal-producto-item');
+
+			const nombreP = $.createElement('p');
+			nombreP.textContent = producto.nombre;
+			productoDiv.appendChild(nombreP);
+
+			const precioP = $.createElement('p');
+			precioP.textContent = `$${producto.precio}`;
+			productoDiv.appendChild(precioP);
+
+			modalContenidoCarrito.appendChild(productoDiv);
+		});
+
+		const totalDiv = $.createElement('div');
+		totalDiv.classList.add('modal-total');
+
+		const totalLabel = $.createElement('p');
+		totalLabel.textContent = 'Total:';
+		totalDiv.appendChild(totalLabel);
+
+		const totalValue = $.createElement('p');
+		totalValue.textContent = `$${ValorTotal}`;
+		totalDiv.appendChild(totalValue);
+
+		modalContenidoCarrito.appendChild(totalDiv);
+	}
+
+	// Abrir el modal
+	modalCarrito.closed = false;
+});
