@@ -53,6 +53,7 @@ let Productos = [
 	},
 ];
 
+// Generar el contenido de los productos dinámicamente
 Productos.forEach((producto => {
 	const productoDiv = $.createElement('div');
 	productoDiv.id = producto.nombre.toLowerCase().replace(' ', '-');
@@ -88,6 +89,7 @@ Productos.forEach((producto => {
 
 const botonesAgregar = $.querySelectorAll('.agregar');
 
+// Agregar funcionalidad a los botones de agregar, actualizando el valor de los items y el total
 botonesAgregar.forEach((boton) => {
 	boton.addEventListener('click', (e) => {
 		const productoDiv = e.target.parentElement.parentElement;
@@ -101,6 +103,8 @@ botonesAgregar.forEach((boton) => {
 		ContenidoValorTotal.textContent = ValorTotal;
 	});
 });
+
+// ----------------------------------------
 
 // Crear el contenedor del modal con su contenido inicial
 const modalContainer = $.getElementById('modal-producto');
@@ -170,3 +174,5 @@ botonesAmpliar.forEach((boton) => {
 		modal.closed = false;
 	});
 });
+
+// ----------------------------------------
